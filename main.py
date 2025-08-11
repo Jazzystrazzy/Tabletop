@@ -7,19 +7,19 @@ from cards.collection import CardCollection
 # Create some sample cards
 # -------------------
 cards_deck = [
-    Card("Ace of Hearts", "High card", {"color": "red", "value": 14}),
-    Card("King of Hearts", "Royal card", {"color": "red", "value": 13}),
-    Card("Queen of Spades", "Royal card", {"color": "black", "value": 12}),
-    Card("Ten of Hearts", "Number card", {"color": "red", "value": 10}),
-    Card("Two of Clubs", "Low card", {"color": "black", "value": 2}),
-    Card("Seven of Hearts", "Number card", {"color": "red", "value": 7}),
+    Card("Ace of Hearts", "A❤️", {"color": "red", "value": 14}),
+    Card("King of Hearts", "K❤️", {"color": "red", "value": 13}),
+    Card("Queen of Spades", "Q♠️", {"color": "black", "value": 12}),
+    Card("Ten of Hearts", "10❤️", {"color": "red", "value": 10}),
+    Card("Two of Clubs", "2♣️", {"color": "black", "value": 2}),
+    Card("Seven of Hearts", "7❤️", {"color": "red", "value": 7}),
 ]
 
 cards_hand = [
-    Card("Jack of Diamonds", "Royal card", {"color": "red", "value": 11}),
-    Card("Three of Spades", "Low card", {"color": "black", "value": 3}),
-    Card("Ten of Diamonds", "Number card", {"color": "red", "value": 10}),
-    Card("Four of Spades", "Low card", {"color": "black", "value": 4}),
+    Card("Jack of Diamonds", "J♦️", {"color": "red", "value": 11}),
+    Card("Three of Spades", "3♠️", {"color": "black", "value": 3}),
+    Card("Ten of Diamonds", "10♦️", {"color": "red", "value": 10}),
+    Card("Four of Spades", "4♠️", {"color": "black", "value": 4}),
 ]
 
 deck = CardCollection(cards_deck)

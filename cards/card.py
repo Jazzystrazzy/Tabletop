@@ -19,4 +19,5 @@ class Card:
         return f"{self.name}: {self.description}"
 
     def __repr__(self):
-        return f"Card(name={self.name}, description={self.description})"
+        return self.description
+        # return f"Card(name={self.name}, description={self.description})"
