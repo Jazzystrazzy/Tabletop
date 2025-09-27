@@ -1,38 +1,22 @@
-# test_card_collection.py
-
-from cards.card import Card
-from cards.collection import CardCollection
+from cards.decks import Deck, FrenchDeck
 
 # -------------------
 # Create some sample cards
 # -------------------
-cards_deck = [
-    Card("Ace of Hearts", "A❤️", {"color": "red", "value": 14}),
-    Card("King of Hearts", "K❤️", {"color": "red", "value": 13}),
-    Card("Queen of Spades", "Q♠️", {"color": "black", "value": 12}),
-    Card("Ten of Hearts", "10❤️", {"color": "red", "value": 10}),
-    Card("Two of Clubs", "2♣️", {"color": "black", "value": 2}),
-    Card("Seven of Hearts", "7❤️", {"color": "red", "value": 7}),
-]
 
-cards_hand = [
-    Card("Jack of Diamonds", "J♦️", {"color": "red", "value": 11}),
-    Card("Three of Spades", "3♠️", {"color": "black", "value": 3}),
-    Card("Ten of Diamonds", "10♦️", {"color": "red", "value": 10}),
-    Card("Four of Spades", "4♠️", {"color": "black", "value": 4}),
-]
+full_deck = FrenchDeck()
 
-deck = CardCollection(cards_deck)
-hand = CardCollection(cards_hand)
+stack = Deck(full_deck.draw_n_cards(n=10, from_where="random"))
+hand = Deck(full_deck.draw_n_cards(n=5, from_where="random"))
 
 print("\n=== Initial State ===")
-print("Deck:", deck.get_cards())
-print("Hand:", hand.get_cards())
+print("Deck:", stack.to_list())
+print("Hand:", hand.to_list())
 
 # -------------------
 # Example 1 — Find the second red card in the deck
 # -------------------
-second_red = deck.find_card(lambda c: c.attributes.get("color") == "red", nth=2)
+second_red = stack.find_card(lambda c: c.attributes.get("color") == "red", nth=2)
 print("\nSecond red card in deck:", second_red)
 
 # -------------------
@@ -45,7 +29,7 @@ print("\nAll black cards in hand:", black_cards)
 # Example 3 — Trade second red card from deck with first black card from hand
 # -------------------
 print("\nTrading 2nd red from deck with 1st black from hand...")
-deck.trade_by_condition(
+stack.trade_by_condition(
     hand,
     my_condition=lambda c: c.attributes.get("color") == "red",
     their_condition=lambda c: c.attributes.get("color") == "black",
@@ -54,26 +38,26 @@ deck.trade_by_condition(
 )
 
 print("\n=== After Trade ===")
-print("Deck:", deck.get_cards())
-print("Hand:", hand.get_cards())
+print("Deck:", stack.to_list())
+print("Hand:", hand.to_list())
 
 # -------------------
 # Example 4 — Shuffle the deck
 # -------------------
-print("\nShuffling deck...")
-deck.shuffle()
-print("Deck after shuffle:", deck.get_cards())
+print("\nShuffling stack...")
+stack.shuffle()
+print("Deck after shuffle:", stack.to_list())
 
 # -------------------
-# Example 5 — Trade based on value rule (any card with value <= 4)
+# Example 5 — Trade based on value rule (all cards with value <= 4)
 # -------------------
 print("\nTrading low-value cards (<= 4)...")
-deck.trade_by_condition(
+stack.trade_all_by_condition(
     hand,
     my_condition=lambda c: c.attributes.get("value", 0) <= 4,
-    their_condition=lambda c: c.attributes.get("value", 0) <= 4
+    their_condition=lambda c: c.attributes.get("value", 0) <= 4,
 )
 
 print("\n=== Final State ===")
-print("Deck:", deck.get_cards())
-print("Hand:", hand.get_cards())
+print("Deck:", stack.to_list())
+print("Hand:", hand.to_list())

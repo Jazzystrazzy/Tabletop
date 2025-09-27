@@ -1,7 +1,7 @@
 from typing import Optional
     
 class Card:
-    def __init__(self, name: str, description: str, attributes: Optional[dict] = None, face_up: bool = False):
+    def __init__(self, name: str, description: Optional[str] = None, attributes: Optional[dict] = None, face_up: bool = False):
         """Initializes a Card instance.
 
         Args:
@@ -11,13 +11,13 @@ class Card:
             face_up (bool, optional): Whether the card is face up. Defaults to False.
         """
         self.name = name
-        self.description = description
+        self.description = description or None
         self.attributes = attributes or {}
         self.face_up = face_up or attributes.get('face_up', False) if attributes else False
 
     def __str__(self):
-        return f"{self.name}: {self.description}"
+        return f"{self.name}" #: {self.description}"
 
     def __repr__(self):
-        return self.description
+        return self.name #self.description
         # return f"Card(name={self.name}, description={self.description})"
